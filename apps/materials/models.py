@@ -6,6 +6,7 @@ from config import settings
 NULLABLE = {"blank": True, "null": True}
 
 
+
 class Course(models.Model):
     title = models.CharField(max_length=150, verbose_name='Название')
     description = models.TextField(verbose_name='Описание')
@@ -44,8 +45,8 @@ class Lesson(models.Model):
 
 
 class Subscription(models.Model):
-    user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='Пользователь')
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Курс')
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='subscription', verbose_name='Пользователь')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='subscription', verbose_name='Курс')
     status = models.BooleanField(default=False, verbose_name='Статус подписки')
 
     def __str__(self):
