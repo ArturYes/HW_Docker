@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 
 from apps.users.models.users import Users

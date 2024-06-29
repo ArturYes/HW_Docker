@@ -5,11 +5,11 @@ from rest_framework.permissions import AllowAny
 
 from apps.users.models.payments import Payments
 from apps.users.models.users import Users
-from apps.users.permissions import IsOwnerOrReadOnly
+from apps.users.serializers.payments import PaymentsSerializer, PaymentsStatusSerializer
 from apps.users.serializers.users import UserSerializer, UserDetailSerializer, UserRegisterSerializer, \
     UserNotOwnerSerializer
-from apps.users.serializers.payments import PaymentsSerializer, PaymentsStatusSerializer
 from apps.users.services import create_strip_product, create_strip_price, create_strip_session, retrieve_strip_session
+from core.permissions import IsOwnerOrReadOnly
 
 
 class UserCreateAPIView(generics.CreateAPIView):
@@ -20,13 +20,6 @@ class UserCreateAPIView(generics.CreateAPIView):
         user = serializer.save(is_active=True)
         user.set_password(user.password)
         user.save()
-
-        payment = serializer.save(user=self.request.user)
-        product_id = create_strip_product(payment)
-        price_id = create_strip_price(product_id, payment)
-        payment.payment_id, payment.payment_link = create_strip_session(price_id)
-        payment.payment_status = retrieve_strip_session(payment.payment_id)
-        payment.save()
 
 
 class UserRetrieveApiView(generics.RetrieveAPIView):
@@ -65,6 +58,14 @@ class PaymentsListAPIView(generics.ListAPIView):
 
 class PaymentsCreateAPIView(generics.CreateAPIView):
     serializer_class = PaymentsSerializer
+
+    def perform_create(self, serializer):
+        payment = serializer.save(user=self.request.user)
+        product_id = create_strip_product(payment)
+        price_id = create_strip_price(product_id, payment)
+        payment.payment_id, payment.payment_link = create_strip_session(price_id)
+        payment.payment_status = retrieve_strip_session(payment.payment_id)
+        payment.save()
 
 
 class PaymentsRetrieveAPIView(generics.RetrieveAPIView):

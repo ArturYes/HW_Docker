@@ -26,4 +26,3 @@ class Users(AbstractUser):
         verbose_name_plural = 'Пользователи'
         db_table = '_us_users'
         ordering = ['email']
-

@@ -2,9 +2,9 @@ from rest_framework import viewsets
 
 from apps.materials.models import Course
 from apps.materials.pagination import MaterialsPagination
-from apps.materials.permissions import IsModerator, IsOwner
 from apps.materials.serializers.course import CourseSerializer
 from apps.materials.tasks import mailing_about_updates
+from core.permissions import IsModerator, IsOwner
 
 
 class CourseViewSet(viewsets.ModelViewSet):

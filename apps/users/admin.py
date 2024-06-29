@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from apps.users.models.users import Users
 from apps.users.models.payments import Payments
+from apps.users.models.users import Users
 
 
 @admin.register(Users)

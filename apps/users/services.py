@@ -29,5 +29,5 @@ def create_strip_session(price):
 
 
 def retrieve_strip_session(session_id):
-    stripe_session_status = stripe.checkout.Session.retrieve(session_id,)
+    stripe_session_status = stripe.checkout.Session.retrieve(session_id, )
     return stripe_session_status.get('payment_status')

@@ -1,8 +1,8 @@
 from rest_framework import serializers, fields
 
+from apps.materials.models import Course, Lesson, Subscription
 from apps.materials.serializers.lesson import LessonSerializer
 from apps.materials.validators import UrlLessonsValidator
-from apps.materials.models import Course, Lesson, Subscription
 
 
 class CourseSerializer(serializers.ModelSerializer):

@@ -1,6 +1,11 @@
 from rest_framework.permissions import BasePermission
 
 
+class IsOwnerOrReadOnly(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return obj == request.user
+
+
 class IsModerator(BasePermission):
     message = "Available only to moderators!"
 
@@ -17,4 +22,3 @@ class IsOwner(BasePermission):
         if obj.owner == request.user:
             return True
         return False
-    

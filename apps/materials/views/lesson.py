@@ -2,8 +2,8 @@ from rest_framework import generics
 
 from apps.materials.models import Lesson
 from apps.materials.pagination import MaterialsPagination
-from apps.materials.permissions import IsModerator, IsOwner
 from apps.materials.serializers.lesson import LessonSerializer
+from core.permissions import IsModerator, IsOwner
 
 
 class LessonCreateAPIView(generics.CreateAPIView):

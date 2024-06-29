@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from apps.materials.validators import UrlLessonsValidator
+
 from apps.materials.models import Lesson
+from apps.materials.validators import UrlLessonsValidator
 
 
 class LessonSerializer(serializers.ModelSerializer):
