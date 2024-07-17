@@ -31,7 +31,7 @@
 
 Клонируйте репозиторий используя следующую команду.
   ```sh
-  git clone https://github.com/vk1337-btsk/drf_homework.git
+  git clone git@github.com:ArturYes/HW_Docker.git
   ```
 
 
@@ -98,4 +98,20 @@ pip install -r requirements.txt
   ```text
   python manage.py runserver
   ```
-  перейдите по адресу: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- перейдите по адресу: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+## 5. Запуск проекта с использованием Docker и Docker Compose:
+
+### Предварительные требования
+
+- Docker: [Установить Docker](https://docs.docker.com/get-docker/)
+- Docker Compose: [Установить Docker Compose](https://docs.docker.com/compose/install/)
+
+### Создать файл .env и настроить, переменные находятся в файле .env.sample:
+
+###  Редактирование docker-compose.yaml:
+
+##### Запустите проект с помощью Docker Compose:
+  ```text
+    docker-compose up --build
+  ```
