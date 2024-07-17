@@ -39,3 +39,7 @@ def mailing_about_updates(course_id):
         return response
     except smtplib.SMTPException as ex:
         raise ex
+
+@shared_task
+def add(x, y):
+    return x + y
